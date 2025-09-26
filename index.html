@@ -3,79 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Литовское гражданство — Контакты</title>
+  <title>Citizenship Helper</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      line-height: 1.6;
-      background: #f9f9f9;
+      margin: 0;
+      background: #f7f7f7;
+      color: #333;
     }
-    h1, h2 {
-      color: #2c3e50;
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
     }
-    table {
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #34495e;
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    nav button:hover {
+      background: #2c3e50;
+    }
+    .section {
+      display: none;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .active {
+      display: block;
+    }
+    textarea {
       width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 30px;
-      background: #fff;
-    }
-    th, td {
-      border: 1px solid #ccc;
+      height: 150px;
+      margin-top: 10px;
       padding: 10px;
-      text-align: left;
-    }
-    th {
-      background: #ecf0f1;
-    }
-    .note {
-      width: 100%;
-      min-height: 60px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <h1>Литовское гражданство</h1>
-  <p>Собранные контакты фирм, архивов и специалистов.</p>
 
-  <h2>Фирмы по гражданству</h2>
-  <table>
-    <tr>
-      <th>Название</th>
-      <th>Сайт</th>
-      <th>Примечания</th>
-    </tr>
-    <tr>
-      <td>Citizenship.lt</td>
-      <td><a href="https://citizenship.lt" target="_blank">citizenship.lt</a></td>
-      <td><textarea class="note" placeholder="Ваши заметки..."></textarea></td>
-    </tr>
-    <tr>
-      <td>De Civitate</td>
-      <td><a href="https://decivitate.lt" target="_blank">decivitate.lt</a></td>
-      <td><textarea class="note" placeholder="Ваши заметки..."></textarea></td>
-    </tr>
-  </table>
+<header>
+  <h1>Citizenship Helper</h1>
+</header>
 
-  <h2>Архивы</h2>
-  <table>
-    <tr>
-      <th>Название</th>
-      <th>Сайт</th>
-      <th>Email</th>
-    </tr>
-    <tr>
-      <td>Литовский центральный архив</td>
-      <td><a href="https://archyvai.lt" target="_blank">archyvai.lt</a></td>
-      <td>lcva@archyvai.lt</td>
-    </tr>
-    <tr>
-      <td>Региональный архив Каунаса</td>
-      <td><a href="https://archyvai.lt" target="_blank">archyvai.lt</a></td>
-      <td>kaunas@archyvai.lt</td>
-    </tr>
-  </table>
+<nav>
+  <button onclick="showSection('personal')">Персональные заметки</button>
+  <button onclick="showSection('public')">Открытые</button>
+  <button onclick="showSection('archive')">Архив</button>
+</nav>
 
-  <p><em>Заметки сохраняются только в браузере (для личного пользования).</em></p>
+<main>
+  <section id="personal" class="section active">
+    <h2>Персональные заметки</h2>
+    <p>Здесь можно писать заметки только для себя.</p>
+    <textarea placeholder="Введите вашу заметку..."></textarea>
+  </section>
+
+  <section id="public" class="section">
+    <h2>Открытые заметки (с премодерацией)</h2>
+    <p>Здесь будут заметки, которые после проверки могут стать видимыми другим.</p>
+    <textarea placeholder="Напишите заметку для публикации..."></textarea>
+  </section>
+
+  <section id="archive" class="section">
+    <h2>Архив</h2>
+    <p>Здесь будут храниться старые заметки.</p>
+  </section>
+</main>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+
 </body>
 </html>

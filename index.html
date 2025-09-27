@@ -1,93 +1,182 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Citizenship Helper</title>
+  <title>Литовское гражданство — справочник</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background: #f7f7f7;
+      padding: 0;
+      background: #f9f9f9;
       color: #333;
     }
     header {
-      background: #2c3e50;
+      background: #003366;
       color: white;
       padding: 10px 20px;
-      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
     }
     nav {
+      background: #0055a5;
       display: flex;
-      justify-content: center;
-      background: #34495e;
+      gap: 15px;
+      padding: 10px 20px;
     }
-    nav button {
-      background: none;
-      border: none;
+    nav a {
       color: white;
-      padding: 12px 20px;
-      cursor: pointer;
-      font-size: 16px;
+      text-decoration: none;
+      font-weight: bold;
     }
-    nav button:hover {
-      background: #2c3e50;
+    nav a:hover {
+      text-decoration: underline;
     }
-    .section {
-      display: none;
+    section {
       padding: 20px;
-      max-width: 800px;
-      margin: auto;
     }
-    .active {
-      display: block;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 25px;
+      background: white;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      vertical-align: top;
+    }
+    th {
+      background: #e0e0e0;
     }
     textarea {
       width: 100%;
-      height: 150px;
-      margin-top: 10px;
+      min-height: 60px;
+      resize: vertical;
+      padding: 5px;
+    }
+    .note-box {
+      margin-top: 5px;
+    }
+    .save-btn {
+      margin-top: 5px;
+      padding: 5px 10px;
+      background: #0055a5;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .save-btn:hover {
+      background: #003f7f;
+    }
+    footer {
+      background: #003366;
+      color: white;
+      text-align: center;
       padding: 10px;
-      font-size: 14px;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Литовское гражданство — справочник</h1>
+  </header>
 
-<header>
-  <h1>Citizenship Helper</h1>
-</header>
+  <nav>
+    <a href="#firms">Фирмы</a>
+    <a href="#archives">Архивы</a>
+  </nav>
 
-<nav>
-  <button onclick="showSection('personal')">Персональные заметки</button>
-  <button onclick="showSection('public')">Открытые</button>
-  <button onclick="showSection('archive')">Архив</button>
-</nav>
-
-<main>
-  <section id="personal" class="section active">
-    <h2>Персональные заметки</h2>
-    <p>Здесь можно писать заметки только для себя.</p>
-    <textarea placeholder="Введите вашу заметку..."></textarea>
+  <section id="firms">
+    <h2>Фирмы, помогающие в получении гражданства</h2>
+    <table>
+      <tr>
+        <th>Название</th>
+        <th>Сайт</th>
+        <th>Поддержка русского</th>
+        <th>Персональная заметка</th>
+        <th>Открытые заметки (премодерация)</th>
+      </tr>
+      <tr>
+        <td>Migracija.lt</td>
+        <td><a href="https://migracija.lt" target="_blank">migracija.lt</a></td>
+        <td>Да</td>
+        <td>
+          <textarea id="note-firm1"></textarea>
+          <button class="save-btn" onclick="saveNote('firm1')">Сохранить</button>
+        </td>
+        <td><em>Скоро будет доступно</em></td>
+      </tr>
+      <tr>
+        <td>Citizenship.lt</td>
+        <td><a href="https://citizenship.lt" target="_blank">citizenship.lt</a></td>
+        <td>Да</td>
+        <td>
+          <textarea id="note-firm2"></textarea>
+          <button class="save-btn" onclick="saveNote('firm2')">Сохранить</button>
+        </td>
+        <td><em>Скоро будет доступно</em></td>
+      </tr>
+    </table>
   </section>
 
-  <section id="public" class="section">
-    <h2>Открытые заметки (с премодерацией)</h2>
-    <p>Здесь будут заметки, которые после проверки могут стать видимыми другим.</p>
-    <textarea placeholder="Напишите заметку для публикации..."></textarea>
+  <section id="archives">
+    <h2>Архивы Литвы</h2>
+    <table>
+      <tr>
+        <th>Название</th>
+        <th>Сайт</th>
+        <th>Контакты</th>
+        <th>Персональная заметка</th>
+      </tr>
+      <tr>
+        <td>Литовский государственный исторический архив</td>
+        <td><a href="https://www.archyvai.lt" target="_blank">archyvai.lt</a></td>
+        <td>info@archyvai.lt</td>
+        <td>
+          <textarea id="note-arch1"></textarea>
+          <button class="save-btn" onclick="saveNote('arch1')">Сохранить</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Центральный государственный архив Литвы</td>
+        <td><a href="https://www.archyvai.lt/lt/lvia.html" target="_blank">archyvai.lt/lvia</a></td>
+        <td>lvia@archyvai.lt</td>
+        <td>
+          <textarea id="note-arch2"></textarea>
+          <button class="save-btn" onclick="saveNote('arch2')">Сохранить</button>
+        </td>
+      </tr>
+    </table>
   </section>
 
-  <section id="archive" class="section">
-    <h2>Архив</h2>
-    <p>Здесь будут храниться старые заметки.</p>
-  </section>
-</main>
+  <footer>
+    © 2025 Литовское гражданство — справочник
+  </footer>
 
-<script>
-  function showSection(id) {
-    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-</script>
-
+  <script>
+    // Загружаем сохранённые заметки
+    function loadNotes() {
+      const keys = ['firm1','firm2','arch1','arch2'];
+      keys.forEach(key => {
+        const saved = localStorage.getItem('note-' + key);
+        if (saved) {
+          document.getElementById('note-' + key).value = saved;
+        }
+      });
+    }
+    // Сохраняем заметку
+    function saveNote(key) {
+      const value = document.getElementById('note-' + key).value;
+      localStorage.setItem('note-' + key, value);
+      alert("Заметка сохранена!");
+    }
+    window.onload = loadNotes;
+  </script>
 </body>
 </html>
